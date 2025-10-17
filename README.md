@@ -115,11 +115,12 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 4. **Authenticate with Microsoft 365** → sign in as **Entra Global Administrator**  
 5. **Accept** the consent screen
    
-<img width="3839" height="2083" alt="Screenshot 2025-10-17 053220" src="https://github.com/user-attachments/assets/9ecd8e30-8c70-4896-aaa6-2c5315f07965" />
 
 <img width="3771" height="1608" alt="Screenshot 2025-10-17 053557" src="https://github.com/user-attachments/assets/0ad719ea-5f4d-4b5a-8aaf-e3bc56bc8dec" />
 
 <img width="3829" height="1825" alt="Screenshot 2025-10-17 053214" src="https://github.com/user-attachments/assets/85aa5e4a-d7c6-4340-b163-cc22b40d0345" />
+
+<img width="3839" height="2083" alt="Screenshot 2025-10-17 053220" src="https://github.com/user-attachments/assets/9ecd8e30-8c70-4896-aaa6-2c5315f07965" />
 
 **Result:** Okta now has Graph API permissions to manage Entra users.
 
