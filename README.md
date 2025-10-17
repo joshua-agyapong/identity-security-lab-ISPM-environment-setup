@@ -44,7 +44,7 @@ Added three identities within Okta (**Directory → People → Add Person**):
 | **Bob Analyst** | Finance | Standard user |
 | **Charlie Contractor** | Vendor | Suspended (inactive) |
 
-https://github.com/joshua-agyapong/identity-security-lab-ISPM-environment-setup/blob/75d484aba08dff144d376d6e08ba8c620b1495d4/Screenshot%202025-10-17%20030139.png?raw=true
+https://github.com/joshua-agyapong/identity-security-lab-ISPM-environment-setup/blob/6a77391c09a3ce25a5410df88c8409ea9cd96e52/Screenshot%202025-10-17%20030139.png
 
 **Result:**  
 Base user population created in the Okta directory for provisioning and lifecycle testing.
