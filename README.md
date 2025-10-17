@@ -100,8 +100,8 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 
 **Result:** The Microsoft 365 app appears in Okta.
 
-<img width="3839" height="1543" alt="Screenshot 2025-10-17 042516" src="https://github.com/user-attachments/assets/ddcf9de9-d68c-47a3-a42a-44d11168771d" />
-png)
+<img width="3839" height="2083" alt="Screenshot 2025-10-17 053220" src="https://github.com/user-attachments/assets/9ecd8e30-8c70-4896-aaa6-2c5315f07965" />
+
 
 <img width="1633" height="1496" alt="Screenshot 2025-10-17 052747" src="https://github.com/user-attachments/assets/ddfe68ca-f472-4cc9-ae2a-8d51b5c110ff" />
 
