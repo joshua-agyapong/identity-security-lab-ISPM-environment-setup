@@ -1,4 +1,4 @@
-# 🧩 Module 1 — Environment Setup and Identity Provisioning (Identity Security Hygiene Lab)
+<img width="3829" height="1825" alt="Screenshot 2025-10-17 053214" src="https://github.com/user-attachments/assets/24441b8a-6cfd-433c-85fd-94f4fefeb566" /># 🧩 Module 1 — Environment Setup and Identity Provisioning (Identity Security Hygiene Lab)
 
 ## 📘 Project Goal
 Establish a functional identity environment that supports **Identity Security Posture Management (ISPM)** operations.  
@@ -85,31 +85,7 @@ Defined baseline role-based access model, supporting privilege and membership ma
 # Okta → Entra ID Provisioning (Microsoft Graph) — Step 4
 
 This guide shows how to configure **Okta** to provision identities into **Microsoft Entra ID** using **Microsoft Graph**.  
-Use it as a lab in your `ispm-environment-setup` repo.
-
-> Put screenshots in `images/` and keep the file names below (or update the links).
-
 ---
-
-## 📁 Repo Structure (suggested)
-```
-ispm-environment-setup/
-│
-├─ step4-okta-entra-provisioning/
-│  ├─ README.md  <-- this file
-│  └─ images/
-│     ├─ okta_add_m365_general.png
-│     ├─ okta_add_m365_signon.png
-│     ├─ okta_prov_integration_enabled.png
-│     ├─ okta_prov_toapp_toggles.png
-│     ├─ okta_attribute_mappings.png
-│     ├─ entra_users_list.png
-│     ├─ entra_user_profile.png
-│     └─ okta_view_logs_user_created.png
-```
-
----
-
 ## ✅ Outcome
 - Okta can **create**, **update**, and **deactivate** users in **Entra ID**.
 - This delivers **“Configure ISPM tool data sources and integrations.”**
@@ -124,8 +100,10 @@ ispm-environment-setup/
 
 **Result:** The Microsoft 365 app appears in Okta.
 
-![Add M365 – General](images/okta_add_m365_general.png)
-![Add M365 – Sign-On Options](images/okta_add_m365_signon.png)
+<img width="3839" height="1543" alt="Screenshot 2025-10-17 042516" src="https://github.com/user-attachments/assets/ddcf9de9-d68c-47a3-a42a-44d11168771d" />
+png)
+
+<img width="1633" height="1496" alt="Screenshot 2025-10-17 052747" src="https://github.com/user-attachments/assets/ddfe68ca-f472-4cc9-ae2a-8d51b5c110ff" />
 
 ---
 
@@ -137,9 +115,12 @@ ispm-environment-setup/
 4. **Authenticate with Microsoft 365** → sign in as **Entra Global Administrator**  
 5. **Accept** the consent screen
 
-**Result:** Okta now has Graph API permissions to manage Entra users.
 
-![Provisioning – Integration Enabled](images/okta_prov_integration_enabled.png)
+<img width="3771" height="1608" alt="Screenshot 2025-10-17 053557" src="https://github.com/user-attachments/assets/0ad719ea-5f4d-4b5a-8aaf-e3bc56bc8dec" />
+
+<img width="3829" height="1825" alt="Screenshot 2025-10-17 053214" src="https://github.com/user-attachments/assets/85aa5e4a-d7c6-4340-b163-cc22b40d0345" />
+
+**Result:** Okta now has Graph API permissions to manage Entra users.
 
 ---
 
