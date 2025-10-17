@@ -149,51 +149,6 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 
 ![Provisioning – To App Toggles](images/okta_prov_toapp_toggles.png)
 
----
-
-## D) Configure User Matching and Mappings (important)
-
-1. **Provisioning → To App → Attribute Mappings**  
-2. Map **Okta `userName` → Entra `userPrincipalName` (UPN)**  
-3. Optional: **Okta `primaryEmail` → `mail`**  
-4. Map **givenName**, **familyName**, **displayName** as needed  
-5. **Save Mappings**
-
-**Tip:** If your UPN domain differs, add a transformation to append `@yourtenant.onmicrosoft.com`.
-
-**Result:** Okta knows how to populate Entra fields correctly.
-
-![Attribute Mappings](images/okta_attribute_mappings.png)
-
----
-
-## E) (Optional) Assign Licenses via Okta
-
-1. App **General → Licenses** (if available)  
-2. Select an M365 license SKU → **Save**
-
-**Result:** Users can get a Microsoft 365 license during provisioning.
-
----
-
-## F) Assign Who Gets Provisioned
-
-1. **Assignments** tab → **Assign → Assign to Groups**  
-2. Select **All-Employees** (or pick test users) → **Assign → Done**
-
-**Result:** Okta starts provisioning those identities into Entra.
-
----
-
-## G) Force a Provisioning Push (quick test)
-
-1. **Provisioning → To App**  
-2. **Force Sync** or **Refresh App Users** (if shown)  
-3. Wait **1–5 minutes**
-
-**Result:** New accounts appear in **Entra ID → Users**.
-
----
 
 ## H) Verify in Entra ID
 
@@ -231,24 +186,9 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 
 ---
 
-## K) Common Errors and Quick Fixes
-
-- **User not created:** UPN domain mismatch → fix mapping to **userPrincipalName**  
-- **No license:** Assign license SKU in app or in M365 admin center  
-- **Stuck “Pending”:** Click **Force Sync**, then refresh Entra Users  
-- **Wrong user matched:** Match on **UPN** or **email** consistently  
-- **Consent failed:** Re-run **Authenticate with Microsoft 365** as Global Admin
-
----
-
-## 📸 Screenshot Checklist (for your repo)
-
-- Okta **Provisioning → Integration** (API enabled)  
-- Okta **Provisioning → To App** (three toggles on)  
-- Okta **Attribute Mappings** screen  
-- Entra **Users** list showing the three users  
-- Entra **User → Profile** with attributes populated  
-- Okta **View Logs** showing “User Created”
+##  Common Errors and Quick Fixes
+The error faced was that the domains didn't match with my Entra ID domain. I changed the users' emails to match it
+Before that, I unassigned the group and re-assigned it after fixing the issue 
 
 ---
 
@@ -265,6 +205,9 @@ Automatic provisioning established — Okta can now create, update, and deactiva
 ## ✅ Step 5 — Verify Identity Provisioning in Entra ID
 **Action:**  
 Opened **Microsoft Entra ID → Users** to confirm user synchronization.
+
+<img width="3820" height="1264" alt="image" src="https://github.com/user-attachments/assets/0160887b-04b8-4479-9ed2-cd8754aa8b0a" />
+
 
 **Result:**  
 All three Okta users successfully provisioned into Entra ID as *Members*.  
