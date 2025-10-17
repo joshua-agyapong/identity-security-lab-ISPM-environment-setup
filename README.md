@@ -149,6 +149,83 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 
 ![Provisioning – To App Toggles](images/okta_prov_toapp_toggles.png)
 
+## E) (Optional) Assign Licenses via Okta
+1. Open **Applications → Microsoft Office 365 (Microsoft Graph API integration)**  
+2. Go to **General → Licenses** *(if available in your tenant)*  
+3. Select a license SKU (e.g., **Exchange Online Plan 1**)  
+4. Click **Save**
+   ( I DIDN'T ASSIGN LICENSES YET )
+   
+**Result:** Users can receive a Microsoft 365 license during provisioning.
+
+> Tip: If you don’t see license options, assign licenses in the Microsoft 365 Admin Center instead.
+
+---
+
+## F) Assign Who Gets Provisioned
+1. Open the app → **Assignments** tab  
+2. Click **Assign → Assign to Groups** (recommended) or **Assign to People**  
+3. Select your group (e.g., **All-Employees**) → **Assign**  
+<img width="3834" height="1482" alt="image" src="https://github.com/user-attachments/assets/5f374262-fed6-458a-add5-0c866b9e6a48" />
+
+4. **Save and Go Back → Done**
+
+**Result:** Okta starts provisioning all members of that group to Entra ID.
+
+---
+
+## G) Force a Provisioning Push (Quick Test)
+1. Go to **Provisioning → To App**  
+2. Click **Force Sync** (or **Refresh App Users** if present)  
+3. Wait **1–5 minutes** and refresh the Entra Users list
+
+   (SKIPPED THIS , I DIDN'T HAVE TO DO THAT IN MY SITUATION)
+   
+**Result:** New accounts appear in **Azure Portal → Microsoft Entra ID → Users**.
+
+---
+
+## 🔍 Optional: Verify in Shell
+Use **Microsoft Graph PowerShell** to confirm the users exist in Entra.
+
+```powershell
+# Install once:
+# Install-Module Microsoft.Graph -Scope CurrentUser
+
+Import-Module Microsoft.Graph.Users
+Connect-MgGraph -Scopes "User.Read.All"
+
+# Replace with your tenant domain (the verified one)
+$domain = "playjtech.onmicrosoft.com"
+
+# Look up the three test users
+$names = @("alicerafa", "bobsmith", "charliedion")
+foreach ($n in $names) {
+    $upn = "$n@$domain"
+    try {
+        $u = Get-MgUser -UserId $upn -ErrorAction Stop
+        "{0}  |  {1}  |  Enabled={2}" -f $u.DisplayName, $u.UserPrincipalName, $u.AccountEnabled
+    } catch {
+        "NOT FOUND  |  $upn"
+    }
+}
+```
+
+---
+
+## 🧯 Common Issues (Fast Fixes)
+- **Users not created** → Check `userPrincipalName` mapping and domain (must be a **verified** domain, e.g., `@tenant.onmicrosoft.com`)  
+- **No license applied** → Assign in Okta **or** M365 Admin Center  
+- **Still pending** → Click **Force Sync** and wait a few minutes  
+- **Errors** → App → **Provisioning → View Logs** (details show the failing attribute/domain)
+
+---
+
+## 📸 Screenshot Checklist
+- `okta_general_licenses.png` — App **General → Licenses**  
+- `okta_assign_group.png` — **Assignments** with the group selected  
+- `okta_force_sync.png` — **Provisioning → To App** (Force Sync)  
+- `entra_users_after_sync.png` — **Entra ID → Users** showing provisioned accounts
 
 ## H) Verify in Entra ID
 
