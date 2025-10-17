@@ -209,70 +209,36 @@ foreach ($n in $names) {
         "NOT FOUND  |  $upn"
     }
 }
+<img width="1740" height="926" alt="image" src="https://github.com/user-attachments/assets/453090f4-cf78-4fda-8b2d-f1a905a3a62a" />
+
 ```
-
 ---
-
-## 🧯 Common Issues (Fast Fixes)
-- **Users not created** → Check `userPrincipalName` mapping and domain (must be a **verified** domain, e.g., `@tenant.onmicrosoft.com`)  
-- **No license applied** → Assign in Okta **or** M365 Admin Center  
-- **Still pending** → Click **Force Sync** and wait a few minutes  
-- **Errors** → App → **Provisioning → View Logs** (details show the failing attribute/domain)
-
----
-
-## 📸 Screenshot Checklist
-- `okta_general_licenses.png` — App **General → Licenses**  
-- `okta_assign_group.png` — **Assignments** with the group selected  
-- `okta_force_sync.png` — **Provisioning → To App** (Force Sync)  
-- `entra_users_after_sync.png` — **Entra ID → Users** showing provisioned accounts
-
 ## H) Verify in Entra ID
 
 1. Azure Portal → **Microsoft Entra ID → Users**  
 2. Search **Alice**, **Bob**, **Charlie**  
 3. Open a user → confirm **User type = Member** and attributes look correct
+<img width="3836" height="1258" alt="image" src="https://github.com/user-attachments/assets/acadd8a9-91c9-4959-b0ad-cc7a58668a50" />
+
 
 **Result:** Users from Okta exist in Entra.
 
-![Entra – Users List](images/entra_users_list.png)
-![Entra – User Profile](images/entra_user_profile.png)
-
 ---
 
-## I) Test Deprovisioning (leaver flow)
 
-1. Okta → **Directory → People → Charlie**  
-2. **More Actions → Suspend**  
-3. Wait **2–5 minutes**  
-4. Entra **Users → Charlie** → confirm **Block sign-in = Yes** (or account disabled)
-
-**Result:** Deprovisioning works end-to-end.
-
----
-
-## J) Check Okta Provisioning Logs
-
-1. App → **Provisioning → View Logs**  
-2. Look for **User Created / Updated / Deactivated**  
-3. Click any entry to see Graph call details
-
-**Result:** Evidence for audits and troubleshooting.
-
-![Okta – View Logs (User Created)](images/okta_view_logs_user_created.png)
-
----
 
 ##  Common Errors and Quick Fixes
 The error faced was that the domains didn't match with my Entra ID domain. I changed the users' emails to match it
 Before that, I unassigned the group and re-assigned it after fixing the issue 
 
+<img width="821" height="564" alt="Screenshot 2025-10-17 061546" src="https://github.com/user-attachments/assets/db1d0c83-afa2-44c5-b6e3-972005db9dd7" />
 ---
 
-### Notes
-- This flow is **provisioning (lifecycle)** via Graph, not SAML/OIDC.  
-- Add SSO later if needed; it’s a separate configuration.
 
+### Notes
+-** This flow is **provisioning (lifecycle)** via Graph, not SAML/OIDC.  
+- Add SSO later if needed; it’s a separate configuration.
+**
 
 **Result:**  
 Automatic provisioning established — Okta can now create, update, and deactivate Entra ID accounts via Microsoft Graph.
@@ -288,11 +254,33 @@ Opened **Microsoft Entra ID → Users** to confirm user synchronization.
 
 **Result:**  
 All three Okta users successfully provisioned into Entra ID as *Members*.  
-Lifecycle automation confirmed between Okta and Entra ID.
+Lifecycle automation confirmed between Okta and Entra ID
+
+
+
+---
+
+## J) Check Okta Provisioning Logs
+
+1. App → **Provisioning → View Logs**  
+2. Look for **User Created / Updated / Deactivated**  
+3. Click any entry to see Graph call details
+
+**Result:** Evidence for audits and troubleshooting.
+
 
 ---
 
 ## 🔒 Step 6 — Simulate Identity Hygiene Conditions
+
+Test Deprovisioning (leaver flow)
+
+1. Okta → **Directory → People → Charlie**  
+2. **More Actions → Suspend**  
+3. Wait **2–5 minutes**  
+4. Entra **Users → Charlie** → confirm **Block sign-in = Yes** (or account disabled)
+
+**Result:** Deprovisioning works end-to-end.
 **Action:**  
 - Suspended *Charlie Contractor* in Okta to represent an inactive identity.  
 - Left *Alice Admin* without MFA and within a broad group (*All-Employees*) to simulate privilege risk.
