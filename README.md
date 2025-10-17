@@ -100,6 +100,12 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 
 **Result:** The Microsoft 365 app appears in Okta.
 
+<img width="3832" height="850" alt="image" src="https://github.com/user-attachments/assets/483a987e-2eda-4834-bd41-1f35462df50b" />
+<img width="3835" height="1146" alt="image" src="https://github.com/user-attachments/assets/1fd5289c-3533-4be8-9f46-48fb9a03e7c6" />
+<img width="3838" height="1368" alt="image" src="https://github.com/user-attachments/assets/57ee43de-e462-49ed-9f79-6fb6a871f432" />
+<img width="3832" height="1392" alt="image" src="https://github.com/user-attachments/assets/214e5bb9-cfbe-45b0-8c31-113c11fd278c" />
+
+
 
 <img width="1609" height="1551" alt="Screenshot 2025-10-17 052311" src="https://github.com/user-attachments/assets/ab3fe170-b5d3-4870-b390-c2fe374ee68f" />
 
@@ -115,6 +121,7 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 4. **Authenticate with Microsoft 365** → sign in as **Entra Global Administrator**  
 5. **Accept** the consent screen
    
+<img width="3832" height="1392" alt="image" src="https://github.com/user-attachments/assets/d7e76513-57d6-467b-b4e2-b58246f80e96" />
 
 <img width="3771" height="1608" alt="Screenshot 2025-10-17 053557" src="https://github.com/user-attachments/assets/0ad719ea-5f4d-4b5a-8aaf-e3bc56bc8dec" />
 
