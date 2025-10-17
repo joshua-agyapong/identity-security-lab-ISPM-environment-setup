@@ -139,6 +139,12 @@ This guide shows how to configure **Okta** to provision identities into **Micros
 2. Enable: **Create Users**, **Update User Attributes**, **Deactivate Users**  
 3. **Save**
 
+<img width="3777" height="1671" alt="image" src="https://github.com/user-attachments/assets/56482a39-77a4-437a-93d8-1cfe2ea9448e" />
+<img width="3839" height="2004" alt="image" src="https://github.com/user-attachments/assets/de5fb4f4-bd46-45e2-8140-0fe19d0c4406" />
+<img width="3832" height="1843" alt="image" src="https://github.com/user-attachments/assets/ed9e6834-9dc4-433a-bbfc-e5d958751a93" />
+
+
+
 **Result:** Lifecycle actions will sync from Okta into Entra.
 
 ![Provisioning – To App Toggles](images/okta_prov_toapp_toggles.png)
