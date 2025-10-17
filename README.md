@@ -1,76 +1,115 @@
-# 🧩 Module 1 – Environment Setup (Identity Security Hygiene Lab)
+# 🧩 Module 1 — Environment Setup and Identity Provisioning (Identity Security Hygiene Lab)
 
-## 📘 Project Overview
-This module establishes a mini enterprise environment for **Identity Security Posture Management (ISPM)** training.  
-It integrates **Okta** (as the Identity Provider) and **Microsoft Entra ID** (as the cloud directory) to simulate how identity data flows, how hygiene issues appear, and how remediation begins.
-
----
-
-## ⚙️ Lab Objectives
-✅ Configure Okta and Entra ID tenants  
-✅ Create and group sample users  
-✅ Enable automatic provisioning from Okta → Entra ID via Microsoft Graph  
-✅ Simulate identity hygiene issues (inactive user, admin without MFA)  
-✅ Export identity data for ISPM analysis  
+## 📘 Project Goal
+Establish a functional identity environment that supports **Identity Security Posture Management (ISPM)** operations.  
+This module focuses on **directory configuration, identity provisioning, and data source preparation** between **Okta** and **Microsoft Entra ID** to enable lifecycle and hygiene monitoring.
 
 ---
 
-## 🏗️ Environment Architecture
-
-| Component | Purpose |
-|------------|----------|
-| **Okta Developer Org** | Primary Identity Provider and provisioning source |
-| **Microsoft 365 Developer Tenant (Entra ID)** | Cloud directory target for synchronization |
-| **Local Lab Folder (C:\\Labs)** | Stores exported identity datasets |
-| **Groups:** Admins-Global / All-Employees | Represent common enterprise roles |
-
-![Architecture Diagram](images/okta_m365_integration.png)
-*Okta ↔ Microsoft 365 Integration using Microsoft Graph API*
+## 🎯 Objectives
+- Configure primary and secondary identity directories  
+- Perform user provisioning from Okta → Entra ID  
+- Establish role-based groups and simulate common identity hygiene issues  
+- Export identity data for analysis in later modules  
 
 ---
 
-## 🧱 Step-by-Step Implementation
+## ⚙️ Tools and Platforms
+| Tool | Purpose |
+|------|----------|
+| **Okta Developer Org** | Identity Provider and provisioning source |
+| **Microsoft 365 Developer Tenant (Entra ID)** | Cloud directory and application target |
+| **Microsoft Graph API** | Interface used by Okta for automated provisioning |
+| **Local Folder (C:\\Labs)** | Stores exported identity data and documentation |
 
-### 1️⃣ Create Tenants
-- Register **Okta Developer Org** → [developer.okta.com](https://developer.okta.com/)  
-- Create **Microsoft 365 Developer Tenant** → [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program)
+---
 
-### 2️⃣ Add Users and Groups in Okta
-| User | Department | Notes |
-|------|-------------|-------|
-| **Alice Admin** | IT | Admin privileges, MFA disabled |
+## 🏗️ Step 1 — Configure Identity Platforms
+**Action:**  
+- Registered a **free Okta Developer Org** at [developer.okta.com](https://developer.okta.com).  
+- Created a **Microsoft 365 Developer Tenant** (includes Entra ID) via the [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program).  
+
+**Result:**  
+Two active tenants ready for integration — Okta as the source, Entra ID as the target directory.
+
+---
+
+## 👥 Step 2 — Create Identities in Okta Directory
+**Action:**  
+Added three identities within Okta (**Directory → People → Add Person**):
+
+| User | Department | Role/Notes |
+|------|-------------|------------|
+| **Alice Admin** | IT | Administrator (MFA disabled) |
 | **Bob Analyst** | Finance | Standard user |
 | **Charlie Contractor** | Vendor | Suspended (inactive) |
 
-Groups created:  
-`Admins-Global`, `All-Employees`
+**Result:**  
+Base user population created in the Okta directory for provisioning and lifecycle testing.
 
-![Okta Users](images/okta_users.png)
-*User directory and group membership in Okta*
+---
 
-### 3️⃣ Configure Okta → Microsoft 365 Integration
-- Add **Microsoft 365 App** from Okta Integration Network  
-- Enable provisioning via **Microsoft Graph API**  
-- Turn on Create/Update/Deactivate options  
-- Assign **All-Employees** group for automatic provisioning  
-- Verify new users appear in **Entra ID → Users**
+## 🧩 Step 3 — Establish Group Structure
+**Action:**  
+Created two groups under **Directory → Groups**:
+- `Admins-Global`  
+- `All-Employees`
 
-![Entra Users](images/entra_users.png)
-*Users synced to Entra ID through Okta provisioning*
+Assigned:
+- Alice → *Admins-Global* and *All-Employees*  
+- Bob → *All-Employees*  
+- Charlie → *All-Employees*
 
-### 4️⃣ Simulate Identity Hygiene Issues
-- Suspend *Charlie Contractor* to represent inactive account  
-- Leave *Alice Admin* without MFA and in broad group to mimic real risks
+**Result:**  
+Defined baseline role-based access model, supporting privilege and membership management.
 
-### 5️⃣ Export Data Sources
-- Okta → Reports > People > Export CSV → `Okta_Users.csv`  
-- Entra ID → Users > Download CSV → `Entra_Users.csv`  
-- Store both in `C:\Labs\`
+---
 
-![Export Files](images/export_files.png)
-*Local data exports used as ISPM data sources*
+## 🔗 Step 4 — Configure Okta → Entra ID Provisioning Integration
+**Action:**  
+1. In Okta, added the **Microsoft 365 App** from the Integration Network.  
+2. Enabled **API Integration** using Microsoft Graph.  
+3. Turned on:  
+   - *Create Users*  
+   - *Update User Attributes*  
+   - *Deactivate Users*  
+4. Assigned group **All-Employees** to the application for automatic provisioning.
+
+**Result:**  
+Automatic provisioning established — Okta can now create, update, and deactivate Entra ID accounts via Microsoft Graph.
+
+---
+
+## ✅ Step 5 — Verify Identity Provisioning in Entra ID
+**Action:**  
+Opened **Microsoft Entra ID → Users** to confirm user synchronization.
+
+**Result:**  
+All three Okta users successfully provisioned into Entra ID as *Members*.  
+Lifecycle automation confirmed between Okta and Entra ID.
+
+---
+
+## 🔒 Step 6 — Simulate Identity Hygiene Conditions
+**Action:**  
+- Suspended *Charlie Contractor* in Okta to represent an inactive identity.  
+- Left *Alice Admin* without MFA and within a broad group (*All-Employees*) to simulate privilege risk.
+
+**Result:**  
+Environment seeded with realistic hygiene defects for ISPM analysis:  
+inactive user / missing MFA / over-privileged admin.
+
+---
+
+## 🧾 Step 7 — Export ISPM Data Sources
+**Action:**  
+- Okta → Reports → People → Export CSV → `Okta_Users.csv`  
+- Entra ID → Users → Download CSV → `Entra_Users.csv`  
+- Stored both under `C:\Labs\`.
+
+**Result:**  
+Baseline identity datasets collected for integration into the ISPM analysis pipeline (Module 2).
 
 ---
 
 ## 🗂️ Deliverables
-
