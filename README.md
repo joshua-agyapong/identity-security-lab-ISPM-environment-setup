@@ -82,6 +82,185 @@ Defined baseline role-based access model, supporting privilege and membership ma
    - *Deactivate Users*  
 4. Assigned group **All-Employees** to the application for automatic provisioning.
 
+# Okta → Entra ID Provisioning (Microsoft Graph) — Step 4
+
+This guide shows how to configure **Okta** to provision identities into **Microsoft Entra ID** using **Microsoft Graph**.  
+Use it as a lab in your `ispm-environment-setup` repo.
+
+> Put screenshots in `images/` and keep the file names below (or update the links).
+
+---
+
+## 📁 Repo Structure (suggested)
+```
+ispm-environment-setup/
+│
+├─ step4-okta-entra-provisioning/
+│  ├─ README.md  <-- this file
+│  └─ images/
+│     ├─ okta_add_m365_general.png
+│     ├─ okta_add_m365_signon.png
+│     ├─ okta_prov_integration_enabled.png
+│     ├─ okta_prov_toapp_toggles.png
+│     ├─ okta_attribute_mappings.png
+│     ├─ entra_users_list.png
+│     ├─ entra_user_profile.png
+│     └─ okta_view_logs_user_created.png
+```
+
+---
+
+## ✅ Outcome
+- Okta can **create**, **update**, and **deactivate** users in **Entra ID**.
+- This delivers **“Configure ISPM tool data sources and integrations.”**
+
+---
+
+## A) Add the Microsoft 365 app in Okta
+
+1. Okta Admin → **Applications → Applications**  
+2. **Browse App Catalog** → search **“Microsoft 365”** (aka *Office 365*)  
+3. **Add Integration** → keep defaults → **Done**
+
+**Result:** The Microsoft 365 app appears in Okta.
+
+![Add M365 – General](images/okta_add_m365_general.png)
+![Add M365 – Sign-On Options](images/okta_add_m365_signon.png)
+
+---
+
+## B) Enable API Integration (Microsoft Graph)
+
+1. Open the new **Microsoft 365** app in Okta  
+2. **Provisioning → Integration → Configure API Integration**  
+3. Check **Enable API Integration**  
+4. **Authenticate with Microsoft 365** → sign in as **Entra Global Administrator**  
+5. **Accept** the consent screen
+
+**Result:** Okta now has Graph API permissions to manage Entra users.
+
+![Provisioning – Integration Enabled](images/okta_prov_integration_enabled.png)
+
+---
+
+## C) Turn on Provisioning Features (To App)
+
+1. **Provisioning → To App → Edit**  
+2. Enable: **Create Users**, **Update User Attributes**, **Deactivate Users**  
+3. **Save**
+
+**Result:** Lifecycle actions will sync from Okta into Entra.
+
+![Provisioning – To App Toggles](images/okta_prov_toapp_toggles.png)
+
+---
+
+## D) Configure User Matching and Mappings (important)
+
+1. **Provisioning → To App → Attribute Mappings**  
+2. Map **Okta `userName` → Entra `userPrincipalName` (UPN)**  
+3. Optional: **Okta `primaryEmail` → `mail`**  
+4. Map **givenName**, **familyName**, **displayName** as needed  
+5. **Save Mappings**
+
+**Tip:** If your UPN domain differs, add a transformation to append `@yourtenant.onmicrosoft.com`.
+
+**Result:** Okta knows how to populate Entra fields correctly.
+
+![Attribute Mappings](images/okta_attribute_mappings.png)
+
+---
+
+## E) (Optional) Assign Licenses via Okta
+
+1. App **General → Licenses** (if available)  
+2. Select an M365 license SKU → **Save**
+
+**Result:** Users can get a Microsoft 365 license during provisioning.
+
+---
+
+## F) Assign Who Gets Provisioned
+
+1. **Assignments** tab → **Assign → Assign to Groups**  
+2. Select **All-Employees** (or pick test users) → **Assign → Done**
+
+**Result:** Okta starts provisioning those identities into Entra.
+
+---
+
+## G) Force a Provisioning Push (quick test)
+
+1. **Provisioning → To App**  
+2. **Force Sync** or **Refresh App Users** (if shown)  
+3. Wait **1–5 minutes**
+
+**Result:** New accounts appear in **Entra ID → Users**.
+
+---
+
+## H) Verify in Entra ID
+
+1. Azure Portal → **Microsoft Entra ID → Users**  
+2. Search **Alice**, **Bob**, **Charlie**  
+3. Open a user → confirm **User type = Member** and attributes look correct
+
+**Result:** Users from Okta exist in Entra.
+
+![Entra – Users List](images/entra_users_list.png)
+![Entra – User Profile](images/entra_user_profile.png)
+
+---
+
+## I) Test Deprovisioning (leaver flow)
+
+1. Okta → **Directory → People → Charlie**  
+2. **More Actions → Suspend**  
+3. Wait **2–5 minutes**  
+4. Entra **Users → Charlie** → confirm **Block sign-in = Yes** (or account disabled)
+
+**Result:** Deprovisioning works end-to-end.
+
+---
+
+## J) Check Okta Provisioning Logs
+
+1. App → **Provisioning → View Logs**  
+2. Look for **User Created / Updated / Deactivated**  
+3. Click any entry to see Graph call details
+
+**Result:** Evidence for audits and troubleshooting.
+
+![Okta – View Logs (User Created)](images/okta_view_logs_user_created.png)
+
+---
+
+## K) Common Errors and Quick Fixes
+
+- **User not created:** UPN domain mismatch → fix mapping to **userPrincipalName**  
+- **No license:** Assign license SKU in app or in M365 admin center  
+- **Stuck “Pending”:** Click **Force Sync**, then refresh Entra Users  
+- **Wrong user matched:** Match on **UPN** or **email** consistently  
+- **Consent failed:** Re-run **Authenticate with Microsoft 365** as Global Admin
+
+---
+
+## 📸 Screenshot Checklist (for your repo)
+
+- Okta **Provisioning → Integration** (API enabled)  
+- Okta **Provisioning → To App** (three toggles on)  
+- Okta **Attribute Mappings** screen  
+- Entra **Users** list showing the three users  
+- Entra **User → Profile** with attributes populated  
+- Okta **View Logs** showing “User Created”
+
+---
+
+### Notes
+- This flow is **provisioning (lifecycle)** via Graph, not SAML/OIDC.  
+- Add SSO later if needed; it’s a separate configuration.
+
+
 **Result:**  
 Automatic provisioning established — Okta can now create, update, and deactivate Entra ID accounts via Microsoft Graph.
 
