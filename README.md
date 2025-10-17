@@ -63,6 +63,9 @@ Assigned:
 - Charlie → *All-Employees*
 <img width="1906" height="1504" alt="image" src="https://github.com/user-attachments/assets/9e04b1e9-01a5-4f75-a208-022258e7f335" />
 <img width="3839" height="1543" alt="image" src="https://github.com/user-attachments/assets/d0461d94-bff7-439c-954a-2818ded7f6df" />
+<img width="3827" height="1369" alt="image" src="https://github.com/user-attachments/assets/e3717981-d609-4257-a74c-8b5629e7d271" />
+<img width="3839" height="1585" alt="image" src="https://github.com/user-attachments/assets/394fded1-06a0-4a54-bbed-c5c9dce62d5c" />
+
 
 **Result:**  
 Defined baseline role-based access model, supporting privilege and membership management.
