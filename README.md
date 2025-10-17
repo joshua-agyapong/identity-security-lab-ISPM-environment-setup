@@ -61,6 +61,7 @@ Assigned:
 - Alice → *Admins-Global* and *All-Employees*  
 - Bob → *All-Employees*  
 - Charlie → *All-Employees*
+<img width="1906" height="1504" alt="image" src="https://github.com/user-attachments/assets/9e04b1e9-01a5-4f75-a208-022258e7f335" />
 
 **Result:**  
 Defined baseline role-based access model, supporting privilege and membership management.
