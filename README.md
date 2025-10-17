@@ -1,4 +1,4 @@
-<img width="3829" height="1825" alt="Screenshot 2025-10-17 053214" src="https://github.com/user-attachments/assets/24441b8a-6cfd-433c-85fd-94f4fefeb566" /># 🧩 Module 1 — Environment Setup and Identity Provisioning (Identity Security Hygiene Lab)
+# 🧩 Module 1 — Environment Setup and Identity Provisioning (Identity Security Hygiene Lab)
 
 ## 📘 Project Goal
 Establish a functional identity environment that supports **Identity Security Posture Management (ISPM)** operations.  
